@@ -144,12 +144,12 @@
   flex-direction: row;
 }
 
-.image-container {
+.image-creator {
   padding-left: 100px;
   width: 40vw;
 }
 
-.image-container img {
+.image-creator img {
   width: 80%;
 }
 

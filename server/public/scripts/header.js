@@ -22,11 +22,10 @@ const headerButton = document.createElement("button");
 headerButton.textContent = "Home";
 
 headerButton.addEventListener("click", () => {
-  window.redirect("/");
+  window.location = "/";
 });
 
 headerRight.appendChild(headerButton); //append button to right container
 headerContainer.appendChild(headerLeft); //append left el to header
 headerContainer.appendChild(headerRight); //append right el to header
-console.log(header);
 header.appendChild(headerContainer); //append header container to header

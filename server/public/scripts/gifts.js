@@ -1,7 +1,7 @@
 const renderGifts = async () => {
   const response = await fetch("/gifts");
   const data = await response.json();
-  console.log(data);
+  //console.log(data);
 
   const mainContent = document.getElementById("main-content");
 
@@ -39,41 +39,46 @@ const renderGifts = async () => {
       card.appendChild(topContainer);
       card.appendChild(bottomContainer);
 
-      mainContent.appendChild(card);
+      mainContent?.appendChild(card);
     });
   } else {
     const message = document.createElement("h1");
     message.textContent = "No Gifts Available 😞";
-    mainContent.appendChild(message);
+    mainContent?.appendChild(message);
   }
 };
+const requestedUrl = window.location.href.split("/").pop();
 
-renderGifts();
+if (requestedUrl) {
+  window.location.href = "../404.html";
+} else {
+  renderGifts();
+}
 
 const renderGift = async () => {
   const requestedID = parseInt(window.location.href.split("/").pop());
   const response = await fetch(`/gifts`);
   const data = await response.json();
-  console.log(data);
 
   const giftContent = document.getElementById("gift-content");
   let gift;
   gift = data.find((gift) => gift.id === requestedID);
+
   if (gift) {
-    document.getElementById(image).src = gift.image;
-    document.getElementById(name).textContent = gift.name;
-    document.getElementById(submittedBy).textContent =
+    document.getElementById("image").src = gift.image;
+    document.getElementById("name").textContent = gift.name;
+    document.getElementById("submittedBy").textContent =
       "Submitted by: " + gift.submittedBy;
-    document.getElementById(pricePoint).textContent =
+    document.getElementById("pricePoint").textContent =
       "Price: " + gift.pricePoint;
-    document.getElementById(audience).textContent =
+    document.getElementById("audience").textContent =
       "Great For: " + gift.audience;
-    document.getElementById(description).textContent = gift.description;
+    document.getElementById("description").textContent = gift.description;
     document.title = `UnEarthed - ${gift.name}`;
   } else {
     const message = document.createElement("h2");
     message.textContent = "No Gift Available 😞";
-    giftContent.appendChild(message);
+    giftContent?.appendChild(message);
   }
 };
 
