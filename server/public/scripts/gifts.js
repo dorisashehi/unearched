@@ -33,6 +33,7 @@ const renderGifts = async () => {
       const link = document.createElement("a");
       link.href = `/gifts/${gift.id}`;
       link.setAttribute("role", "button");
+      link.textContent = "Read More >";
       bottomContainer.appendChild(link);
 
       card.appendChild(topContainer);
@@ -48,3 +49,32 @@ const renderGifts = async () => {
 };
 
 renderGifts();
+
+const renderGift = async () => {
+  const requestedID = parseInt(window.location.href.split("/").pop());
+  const response = await fetch(`/gifts`);
+  const data = await response.json();
+  console.log(data);
+
+  const giftContent = document.getElementById("gift-content");
+  let gift;
+  gift = data.find((gift) => gift.id === requestedID);
+  if (gift) {
+    document.getElementById(image).src = gift.image;
+    document.getElementById(name).textContent = gift.name;
+    document.getElementById(submittedBy).textContent =
+      "Submitted by: " + gift.submittedBy;
+    document.getElementById(pricePoint).textContent =
+      "Price: " + gift.pricePoint;
+    document.getElementById(audience).textContent =
+      "Great For: " + gift.audience;
+    document.getElementById(description).textContent = gift.description;
+    document.title = `UnEarthed - ${gift.name}`;
+  } else {
+    const message = document.createElement("h2");
+    message.textContent = "No Gift Available 😞";
+    giftContent.appendChild(message);
+  }
+};
+
+renderGift();
