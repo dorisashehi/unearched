@@ -49,11 +49,11 @@ const renderGifts = async () => {
 };
 const requestedUrl = window.location.href.split("/").pop();
 
-if (requestedUrl) {
-  window.location.href = "../404.html";
-} else {
-  renderGifts();
-}
+// if (requestedUrl) {
+//   window.location.href = "../404.html";
+// } else {
+renderGifts();
+// }
 
 const renderGift = async () => {
   const requestedID = parseInt(window.location.href.split("/").pop());
