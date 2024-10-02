@@ -1,10 +1,11 @@
 import express from "express";
+import "./config/dotenv.js";
 import giftsRouter from "./routes/gifts.js";
 const app = express();
 
 const PORT = process.env.port || 3001; //read port fron env file else 3001 by default
-app.use("/public", express.static("./public")); //serve frontand files from client/public
-app.use("/public", express.static("./public/scripts")); //serve script files from client/public/scripts
+app.use("/public", express.static("./public")); //serve frontand files from /public
+app.use("/public", express.static("./public/scripts")); //serve script files from /public/scripts
 app.use("/gifts", giftsRouter);
 
 app.get("/", (req, res) => {
